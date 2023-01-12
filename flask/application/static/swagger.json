@@ -1,0 +1,121 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "Flask",
+      "version": "1.0.0",
+      "title": "Flask-App",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "tags": [
+        {
+          "name": "Add new payment",
+          "description": "Example API for adding new payment"
+        },
+        {
+            "name": "View all payments",
+            "description": "Example API for viewing all payments"
+        }
+      ],
+      "paths": {
+        "/add_payment": {
+            "post": {
+                "tags": [
+                  "Add new Payment"
+                ],
+                "summary": "Adds a new payment in database",
+                "requestBody": {
+                  "description": "Book Request Post Object",
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/addpayment"
+                      }
+                    }
+                  }
+                }
+          }
+        },
+        "/view_payments": {
+          "get": {
+            "tags": [
+              "View all payments"
+            ],
+            "summary": "Returns all payments",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/components/schemas/viewpayments"
+                }
+              }
+            }
+          }
+        }
+        
+    },
+    "components": {
+        "schemas": {
+          "id": {
+            "properties": {
+              "uuid": {
+                "type": "string"
+              }
+            }
+          },
+          "addpayment": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "float"
+              },
+              "status": {
+                "type": "string"             
+            },
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "view": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "float"
+              },
+              "date": {
+                "type": "string"
+              },
+              "items": {
+                "type": "string"
+              },
+              "orderid": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          },
+        "viewpayments": {
+            "type": "object",
+            "properties": {
+              "bookRequest": {
+                "type": "object",
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/view"
+                }
+              }
+            }
+          }
+        }
+    }
+}
