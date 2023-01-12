@@ -21,7 +21,13 @@ post-request data sample:
   }
 }
 
+Create Table:
 
+sudo su postgres
+psql
+\l
+CREATE DATABASE test
+\c test
 
 CREATE TYPE status_enum AS ENUM('ordered', 'paid', 'cancelled', 'completed');
 
